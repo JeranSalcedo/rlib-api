@@ -1,4 +1,6 @@
 import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 // const mysql = require("mysql");
 
 import logger from "./middleware/logger.js";
@@ -6,6 +8,9 @@ import notFound from "./middleware/notFound.js";
 import errorHandler from "./middleware/error.js";
 
 import books from "./routes/books.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
