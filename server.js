@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 // const mysql = require("mysql");
@@ -13,6 +14,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+const corsOptions = {
+  origin: "http://localhost:3000",
+};
 
 const PORT = process.env.PORT || 5000;
 // const connection = mysql.createConnection({
@@ -40,7 +44,7 @@ app.use(
 
 app.use(logger);
 
-app.use("/api/books", books);
+app.use("/api/books", cors(corsOptions), books);
 
 app.use(notFound);
 app.use(errorHandler);
