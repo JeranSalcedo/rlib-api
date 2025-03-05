@@ -3,6 +3,7 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import connectDB from "./config/db.js";
+import cookieParser from "cookie-parser";
 
 import logger from "./middleware/logger.js";
 import notFound from "./middleware/notFound.js";
@@ -31,6 +32,7 @@ app.use(
 );
 
 app.use(logger);
+app.use(cookieParser());
 
 app.use("/api/users", cors(corsOptions), users);
 app.use("/api/books", cors(corsOptions), books);
