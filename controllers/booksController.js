@@ -2,8 +2,8 @@ import data from "../TEMP_SERVER.json" with { type: "json" };
 
 let books = data.books;
 
-// @desc Get all books
-// @route GET /api/books
+// @desc    Get all books
+// @route   GET /api/books
 export const getBooks = (req, res, next) => {
   const limit = parseInt(req.query.limit);
 
@@ -14,8 +14,8 @@ export const getBooks = (req, res, next) => {
   res.status(200).json(books);
 };
 
-// @desc Get single book
-// @route GET /api/books/:id
+// @desc    Get single book
+// @route   GET /api/books/:id
 export const getBook = (req, res, next) => {
   const id = parseInt(req.params.id);
   const book = books.find((book) => book.id === id);
@@ -30,8 +30,8 @@ export const getBook = (req, res, next) => {
   res.status(200).json(book);
 };
 
-// @desc Create new book
-// @route POST /api/books
+// @desc    Create new book
+// @route   POST /api/books
 export const createBook = (req, res, next) => {
   const newBook = { id: books.length + 1, title: req.body.title };
 
@@ -45,8 +45,8 @@ export const createBook = (req, res, next) => {
   res.status(201).json([...books, newBook]);
 };
 
-// @desc Update book
-// @route PUT /api/books/:id
+// @desc    Update book
+// @route   PUT /api/books/:id
 export const updateBook = (req, res, next) => {
   const id = parseInt(req.params.id);
   const book = books.find((book) => post.id === id);
@@ -62,8 +62,8 @@ export const updateBook = (req, res, next) => {
   res.status(200).json(books);
 };
 
-// @desc Delete book
-// @route DELETE /api/books/:id
+// @desc    Delete book
+// @route   DELETE /api/books/:id
 export const deleteBook = (req, res, next) => {
   const id = parseInt(req.params.id);
   const book = books.find((book) => post.id === id);

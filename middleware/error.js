@@ -1,9 +1,16 @@
 const errorHandler = (err, req, res, next) => {
-  if (err.status) {
-    res.status(err.status).json({ msg: err.message });
-  } else {
-    res.status(500).json({ msg: err.message });
+  let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  let message = err.message;
+
+  if (err.name === "CastError" && err.kind === "ObjectId") {
+    statusCode = 404;
+    message = "Resource not found.";
   }
+
+  res.status(statusCode).json({
+    message,
+    stack: process.env.NODE_ENV === "production" ? null : err.stack,
+  });
 };
 
 export default errorHandler;
